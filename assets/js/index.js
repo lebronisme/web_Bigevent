@@ -3,14 +3,25 @@ $(function () {
 });
 
 const layer = layui.layer;
+$("#btnlogout").on("click", () => {
+  // alert("niubiu");
+  layui.layer.confirm(
+    "确定退出登录吗？",
+    { icon: 3, title: "" },
+    function (index) {
+      localStorage.removeItem("token");
+      location.href = "/login.html";
+    }
+  );
+});
 //获取用户信息
 function getUserInfo() {
   $.ajax({
     type: "GET",
     url: "/my/userinfo",
-    headers: {
-      Authorization: localStorage.getItem("token"),
-    },
+    // headers: {
+    //   Authorization: localStorage.getItem("token"),
+    // },
     success: (res) => {
       console.log(res);
       if (res.status !== 0) return layer.msg("获取用户信息失败");
