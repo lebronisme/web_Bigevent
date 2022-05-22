@@ -43,3 +43,6 @@ function getUserInfo() {
     }
   };
 }
+function change() {
+  $("#art_list").addClass("layui-this").siblings().removeClass("layui-this");
+}
